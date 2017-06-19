@@ -1,0 +1,6 @@
+<h2>Edit Version</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: version_path(@conn, :update, @version) %>
+
+<span><%= link "Back", to: version_path(@conn, :index) %></span>

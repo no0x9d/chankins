@@ -122,4 +122,66 @@ defmodule Chankins.ChangeManagementTest do
       assert %Ecto.Changeset{} = ChangeManagement.change_release(release)
     end
   end
+
+  describe "versions" do
+    alias Chankins.ChangeManagement.Version
+
+    @valid_attrs %{release_date: %DateTime{calendar: Calendar.ISO, day: 17, hour: 14, microsecond: {0, 6}, minute: 0, month: 4, second: 0, std_offset: 0, time_zone: "Etc/UTC", utc_offset: 0, year: 2010, zone_abbr: "UTC"}, version: "some version"}
+    @update_attrs %{release_date: %DateTime{calendar: Calendar.ISO, day: 18, hour: 15, microsecond: {0, 6}, minute: 1, month: 5, second: 1, std_offset: 0, time_zone: "Etc/UTC", utc_offset: 0, year: 2011, zone_abbr: "UTC"}, version: "some updated version"}
+    @invalid_attrs %{release_date: nil, version: nil}
+
+    def version_fixture(attrs \\ %{}) do
+      {:ok, version} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> ChangeManagement.create_version()
+
+      version
+    end
+
+    test "list_versions/0 returns all versions" do
+      version = version_fixture()
+      assert ChangeManagement.list_versions() == [version]
+    end
+
+    test "get_version!/1 returns the version with given id" do
+      version = version_fixture()
+      assert ChangeManagement.get_version!(version.id) == version
+    end
+
+    test "create_version/1 with valid data creates a version" do
+      assert {:ok, %Version{} = version} = ChangeManagement.create_version(@valid_attrs)
+      assert version.release_date == %DateTime{calendar: Calendar.ISO, day: 17, hour: 14, microsecond: {0, 6}, minute: 0, month: 4, second: 0, std_offset: 0, time_zone: "Etc/UTC", utc_offset: 0, year: 2010, zone_abbr: "UTC"}
+      assert version.version == "some version"
+    end
+
+    test "create_version/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = ChangeManagement.create_version(@invalid_attrs)
+    end
+
+    test "update_version/2 with valid data updates the version" do
+      version = version_fixture()
+      assert {:ok, version} = ChangeManagement.update_version(version, @update_attrs)
+      assert %Version{} = version
+      assert version.release_date == %DateTime{calendar: Calendar.ISO, day: 18, hour: 15, microsecond: {0, 6}, minute: 1, month: 5, second: 1, std_offset: 0, time_zone: "Etc/UTC", utc_offset: 0, year: 2011, zone_abbr: "UTC"}
+      assert version.version == "some updated version"
+    end
+
+    test "update_version/2 with invalid data returns error changeset" do
+      version = version_fixture()
+      assert {:error, %Ecto.Changeset{}} = ChangeManagement.update_version(version, @invalid_attrs)
+      assert version == ChangeManagement.get_version!(version.id)
+    end
+
+    test "delete_version/1 deletes the version" do
+      version = version_fixture()
+      assert {:ok, %Version{}} = ChangeManagement.delete_version(version)
+      assert_raise Ecto.NoResultsError, fn -> ChangeManagement.get_version!(version.id) end
+    end
+
+    test "change_version/1 returns a version changeset" do
+      version = version_fixture()
+      assert %Ecto.Changeset{} = ChangeManagement.change_version(version)
+    end
+  end
 end

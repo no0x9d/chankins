@@ -7,6 +7,7 @@
   schema "change_management_releases" do
     field :version, :string
     belongs_to :project, Chankins.ChangeManagement.Project
+    has_many :versions, Chankins.ChangeManagement.Version
 
     timestamps()
   end

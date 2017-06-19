@@ -1,0 +1,28 @@
+<h2>Listing Versions</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Release date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for version <- @versions do %>
+    <tr>
+      <td><%= version.version %></td>
+      <td><%= version.release_date %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: version_path(@conn, :show, version), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: version_path(@conn, :edit, version), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: version_path(@conn, :delete, version), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Version", to: version_path(@conn, :new) %></span>
