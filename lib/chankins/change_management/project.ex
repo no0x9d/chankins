@@ -6,6 +6,7 @@ defmodule Chankins.ChangeManagement.Project do
 
   schema "change_management_projects" do
     field :name, :string
+    has_many :releases, Chankins.ChangeManagement.Release
 
     timestamps()
   end

@@ -1,0 +1,26 @@
+<h2>Listing Releases</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Version</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for release <- @releases do %>
+    <tr>
+      <td><%= release.version %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: release_path(@conn, :show, release), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: release_path(@conn, :edit, release), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: release_path(@conn, :delete, release), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Release", to: release_path(@conn, :new) %></span>

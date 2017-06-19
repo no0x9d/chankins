@@ -18,6 +18,7 @@ defmodule Chankins.Web.Router do
 
     get "/", PageController, :index
     resources "/projects", ProjectController
+    resources "/releases", ReleaseController
 
   end
 

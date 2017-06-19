@@ -1,0 +1,13 @@
+<h2>Show Release</h2>
+
+<ul>
+
+  <li>
+    <strong>Version:</strong>
+    <%= @release.version %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: release_path(@conn, :edit, @release) %></span>
+<span><%= link "Back", to: release_path(@conn, :index) %></span>
