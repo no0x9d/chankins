@@ -1,0 +1,18 @@
+<h2>Show Feature</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @feature.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @feature.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: feature_path(@conn, :edit, @feature) %></span>
+<span><%= link "Back", to: feature_path(@conn, :index) %></span>

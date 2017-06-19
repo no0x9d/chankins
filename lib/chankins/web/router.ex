@@ -20,6 +20,7 @@ defmodule Chankins.Web.Router do
     resources "/projects", ProjectController
     resources "/releases", ReleaseController
     resources "/versions", VersionController
+    resources "/features", FeatureController
 
   end
 

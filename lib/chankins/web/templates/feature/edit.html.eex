@@ -1,0 +1,6 @@
+<h2>Edit Feature</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: feature_path(@conn, :update, @feature) %>
+
+<span><%= link "Back", to: feature_path(@conn, :index) %></span>
