@@ -246,4 +246,68 @@ defmodule Chankins.ChangeManagementTest do
       assert %Ecto.Changeset{} = ChangeManagement.change_feature(feature)
     end
   end
+
+  describe "parameters" do
+    alias Chankins.ChangeManagement.Parameter
+
+    @valid_attrs %{group: "some group", key: "some key", value: "some value"}
+    @update_attrs %{group: "some updated group", key: "some updated key", value: "some updated value"}
+    @invalid_attrs %{group: nil, key: nil, value: nil}
+
+    def parameter_fixture(attrs \\ %{}) do
+      {:ok, parameter} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> ChangeManagement.create_parameter()
+
+      parameter
+    end
+
+    test "list_parameters/0 returns all parameters" do
+      parameter = parameter_fixture()
+      assert ChangeManagement.list_parameters() == [parameter]
+    end
+
+    test "get_parameter!/1 returns the parameter with given id" do
+      parameter = parameter_fixture()
+      assert ChangeManagement.get_parameter!(parameter.id) == parameter
+    end
+
+    test "create_parameter/1 with valid data creates a parameter" do
+      assert {:ok, %Parameter{} = parameter} = ChangeManagement.create_parameter(@valid_attrs)
+      assert parameter.group == "some group"
+      assert parameter.key == "some key"
+      assert parameter.value == "some value"
+    end
+
+    test "create_parameter/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = ChangeManagement.create_parameter(@invalid_attrs)
+    end
+
+    test "update_parameter/2 with valid data updates the parameter" do
+      parameter = parameter_fixture()
+      assert {:ok, parameter} = ChangeManagement.update_parameter(parameter, @update_attrs)
+      assert %Parameter{} = parameter
+      assert parameter.group == "some updated group"
+      assert parameter.key == "some updated key"
+      assert parameter.value == "some updated value"
+    end
+
+    test "update_parameter/2 with invalid data returns error changeset" do
+      parameter = parameter_fixture()
+      assert {:error, %Ecto.Changeset{}} = ChangeManagement.update_parameter(parameter, @invalid_attrs)
+      assert parameter == ChangeManagement.get_parameter!(parameter.id)
+    end
+
+    test "delete_parameter/1 deletes the parameter" do
+      parameter = parameter_fixture()
+      assert {:ok, %Parameter{}} = ChangeManagement.delete_parameter(parameter)
+      assert_raise Ecto.NoResultsError, fn -> ChangeManagement.get_parameter!(parameter.id) end
+    end
+
+    test "change_parameter/1 returns a parameter changeset" do
+      parameter = parameter_fixture()
+      assert %Ecto.Changeset{} = ChangeManagement.change_parameter(parameter)
+    end
+  end
 end

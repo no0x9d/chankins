@@ -1,0 +1,30 @@
+<h2>Listing Parameters</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Group</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for parameter <- @parameters do %>
+    <tr>
+      <td><%= parameter.key %></td>
+      <td><%= parameter.value %></td>
+      <td><%= parameter.group %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: parameter_path(@conn, :show, parameter), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: parameter_path(@conn, :edit, parameter), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: parameter_path(@conn, :delete, parameter), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Parameter", to: parameter_path(@conn, :new) %></span>

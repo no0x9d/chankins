@@ -1,13 +1,14 @@
 defmodule Chankins.ChangeManagement.Feature do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Chankins.ChangeManagement.Feature
+  alias Chankins.ChangeManagement.{Feature, Version, Parameter}
 
 
   schema "change_management_features" do
     field :description, :string
     field :title, :string
-    belongs_to :version, Chankins.ChangeManagement.Version
+    belongs_to :version, Version
+    has_many :parameters, Parameter
 
     timestamps()
   end

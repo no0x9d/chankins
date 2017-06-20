@@ -1,7 +1,7 @@
 defmodule Chankins.ChangeManagement.Version do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Chankins.ChangeManagement.{Version, Release, Feature}
+  alias Chankins.ChangeManagement.{Version, Release, Feature, Parameter}
 
 
   schema "change_management_versions" do
@@ -9,6 +9,7 @@ defmodule Chankins.ChangeManagement.Version do
     field :version, :string
     belongs_to :release, Release
     has_many :features, Feature
+    has_many :parameters, Parameter
 
     timestamps()
   end
