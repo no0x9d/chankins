@@ -1,1 +1,10 @@
 /* This file is for your main application css. */
+.logo {
+    width: 100%;
+    height: 71px;
+    display: inline-block;
+    margin-bottom: 1em;
+    background-image: url("/images/chankins_logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}

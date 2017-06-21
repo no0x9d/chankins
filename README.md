@@ -1,4 +1,4 @@
-# Chankins
+# ![Chankins](chankins_logo.png)
 
 ## Getting started
 To start your Phoenix server:
