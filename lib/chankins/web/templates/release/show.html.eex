@@ -1,12 +1,11 @@
 <h2>Show Release</h2>
 
+<h3><%= @release.version %></h3>
+<h4>Versions:</h4>
 <ul>
-
-  <li>
-    <strong>Version:</strong>
-    <%= @release.version %>
-  </li>
-
+  <%= for version <- @release.versions do %>
+    <li> <%= link version.version, to: version_path(@conn, :show, version) %> </li>
+  <% end %>
 </ul>
 
 <span><%= link "Edit", to: release_path(@conn, :edit, @release) %></span>

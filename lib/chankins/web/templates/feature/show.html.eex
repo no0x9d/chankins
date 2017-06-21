@@ -1,17 +1,20 @@
 <h2>Show Feature</h2>
 
+<h4>
+  <%= @feature.title %>
+</h4>
+
+<div>
+  <%= @feature.description %>
+</div>
+
 <ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @feature.title %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @feature.description %>
-  </li>
-
+  <%= for parameter <- @feature.parameters do %>
+    <li>
+      <strong> <%= parameter.key %>: </strong>(<%= parameter.group %>)
+      <%= parameter.value %>
+    </li>
+  <% end %>
 </ul>
 
 <span><%= link "Edit", to: feature_path(@conn, :edit, @feature) %></span>

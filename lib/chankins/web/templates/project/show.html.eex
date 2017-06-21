@@ -1,12 +1,11 @@
 <h2>Show Project</h2>
 
+<h3><%= @project.name %></h3>
+<h4>Releases:</h4>
 <ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @project.name %>
-  </li>
-
+  <%= for release <- @project.releases do %>
+    <li> <%= link release.version, to: release_path(@conn, :show, release) %> </li>
+  <% end %>
 </ul>
 
 <span><%= link "Edit", to: project_path(@conn, :edit, @project) %></span>

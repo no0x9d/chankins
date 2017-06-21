@@ -1,17 +1,26 @@
 <h2>Show Version</h2>
 
-<ul>
+<h3><%= @version.version %></h3>
 
-  <li>
-    <strong>Version:</strong>
-    <%= @version.version %>
-  </li>
-
-  <li>
+<div>
     <strong>Release date:</strong>
     <%= @version.release_date %>
-  </li>
+</div>
 
+<ul>
+  <%= for parameter <- @version.parameters do %>
+    <li>
+      <strong> <%= parameter.key %>: </strong>(<%= parameter.group %>)
+      <%= parameter.value %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Features:</h4>
+<ul>
+  <%= for feature <- @version.features do %>
+    <li> <%= link feature.title, to: feature_path(@conn, :show, feature) %> </li>
+  <% end %>
 </ul>
 
 <span><%= link "Edit", to: version_path(@conn, :edit, @version) %></span>

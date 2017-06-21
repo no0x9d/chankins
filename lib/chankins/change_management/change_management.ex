@@ -35,7 +35,7 @@ defmodule Chankins.ChangeManagement do
       ** (Ecto.NoResultsError)
 
   """
-  def get_project!(id), do: Repo.get!(Project, id)
+  def get_project!(id), do: Repo.get!(Project, id) |> Repo.preload([:releases])
 
   @doc """
   Creates a project.
@@ -131,7 +131,7 @@ defmodule Chankins.ChangeManagement do
       ** (Ecto.NoResultsError)
 
   """
-  def get_release!(id), do: Repo.get!(Release, id)
+  def get_release!(id), do: Repo.get!(Release, id) |> Repo.preload([:versions])
 
   @doc """
   Creates a release.
@@ -227,7 +227,7 @@ defmodule Chankins.ChangeManagement do
       ** (Ecto.NoResultsError)
 
   """
-  def get_version!(id), do: Repo.get!(Version, id)
+  def get_version!(id), do: Repo.get!(Version, id) |> Repo.preload([:features, :parameters])
 
   @doc """
   Creates a version.
@@ -323,7 +323,7 @@ defmodule Chankins.ChangeManagement do
       ** (Ecto.NoResultsError)
 
   """
-  def get_feature!(id), do: Repo.get!(Feature, id)
+  def get_feature!(id), do: Repo.get!(Feature, id) |> Repo.preload([:parameters])
 
   @doc """
   Creates a feature.
