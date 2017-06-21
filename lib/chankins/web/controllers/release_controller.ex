@@ -10,7 +10,8 @@ defmodule Chankins.Web.ReleaseController do
 
   def new(conn, _params) do
     changeset = ChangeManagement.change_release(%Chankins.ChangeManagement.Release{})
-    render(conn, "new.html", changeset: changeset)
+    projects = ChangeManagement.list_projects() |> Enum.map(fn r -> {r.name, r.id} end)
+    render(conn, "new.html", changeset: changeset, projects: projects)
   end
 
   def create(conn, %{"release" => release_params}) do
@@ -20,7 +21,8 @@ defmodule Chankins.Web.ReleaseController do
         |> put_flash(:info, "Release created successfully.")
         |> redirect(to: release_path(conn, :show, release))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        projects = ChangeManagement.list_projects() |> Enum.map(fn r -> {r.name, r.id} end)
+        render(conn, "new.html", changeset: changeset, projects: projects)
     end
   end
 
@@ -32,7 +34,8 @@ defmodule Chankins.Web.ReleaseController do
   def edit(conn, %{"id" => id}) do
     release = ChangeManagement.get_release!(id)
     changeset = ChangeManagement.change_release(release)
-    render(conn, "edit.html", release: release, changeset: changeset)
+    projects = ChangeManagement.list_projects() |> Enum.map(fn r -> {r.name, r.id} end)
+    render(conn, "edit.html", release: release, changeset: changeset, projects: projects)
   end
 
   def update(conn, %{"id" => id, "release" => release_params}) do
@@ -44,7 +47,8 @@ defmodule Chankins.Web.ReleaseController do
         |> put_flash(:info, "Release updated successfully.")
         |> redirect(to: release_path(conn, :show, release))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", release: release, changeset: changeset)
+        projects = ChangeManagement.list_projects() |> Enum.map(fn r -> {r.name, r.id} end)
+        render(conn, "edit.html", release: release, changeset: changeset, projects: projects)
     end
   end
 

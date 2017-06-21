@@ -131,7 +131,7 @@ defmodule Chankins.ChangeManagement do
       ** (Ecto.NoResultsError)
 
   """
-  def get_release!(id), do: Repo.get!(Release, id) |> Repo.preload([:versions])
+  def get_release!(id), do: Repo.get!(Release, id) |> Repo.preload([:versions, :project])
 
   @doc """
   Creates a release.

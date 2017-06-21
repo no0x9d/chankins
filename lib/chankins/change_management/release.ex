@@ -15,7 +15,7 @@
   @doc false
   def changeset(%Release{} = release, attrs) do
     release
-    |> cast(attrs, [:version])
+    |> cast(attrs, [:version, :project_id])
     |> validate_required([:version])
   end
 end

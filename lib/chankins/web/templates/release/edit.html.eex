@@ -1,6 +1,6 @@
 <h2>Edit Release</h2>
 
-<%= render "form.html", changeset: @changeset,
+<%= render "form.html", changeset: @changeset, projects: @projects,
                         action: release_path(@conn, :update, @release) %>
 
 <span><%= link "Back", to: release_path(@conn, :index) %></span>
