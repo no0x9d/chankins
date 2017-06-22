@@ -18,6 +18,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :version_id, class: "control-label" %>
+    <%= select f, :version_id, map_versions_for_select(@versions), class: "form-control" %>
+    <%= error_tag f, :version_id %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

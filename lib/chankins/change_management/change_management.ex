@@ -210,7 +210,7 @@ defmodule Chankins.ChangeManagement do
 
   """
   def list_versions do
-    Repo.all(Version)
+    Repo.all(Version) |> Repo.preload([:release])
   end
 
   @doc """

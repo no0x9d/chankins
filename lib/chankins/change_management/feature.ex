@@ -16,7 +16,7 @@ defmodule Chankins.ChangeManagement.Feature do
   @doc false
   def changeset(%Feature{} = feature, attrs) do
     feature
-    |> cast(attrs, [:title, :description])
+    |> cast(attrs, [:title, :description, :version_id])
     |> validate_required([:title, :description])
   end
 end

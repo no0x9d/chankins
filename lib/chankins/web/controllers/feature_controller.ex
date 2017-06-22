@@ -10,7 +10,8 @@ defmodule Chankins.Web.FeatureController do
 
   def new(conn, _params) do
     changeset = ChangeManagement.change_feature(%Chankins.ChangeManagement.Feature{})
-    render(conn, "new.html", changeset: changeset)
+    versions = ChangeManagement.list_versions()
+    render(conn, "new.html", changeset: changeset, versions: versions)
   end
 
   def create(conn, %{"feature" => feature_params}) do
@@ -20,7 +21,8 @@ defmodule Chankins.Web.FeatureController do
         |> put_flash(:info, "Feature created successfully.")
         |> redirect(to: feature_path(conn, :show, feature))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        versions = ChangeManagement.list_versions()
+        render(conn, "new.html", changeset: changeset, versions: versions)
     end
   end
 
@@ -32,7 +34,8 @@ defmodule Chankins.Web.FeatureController do
   def edit(conn, %{"id" => id}) do
     feature = ChangeManagement.get_feature!(id)
     changeset = ChangeManagement.change_feature(feature)
-    render(conn, "edit.html", feature: feature, changeset: changeset)
+    versions = ChangeManagement.list_versions()
+    render(conn, "edit.html", changeset: changeset, feature: feature, versions: versions)
   end
 
   def update(conn, %{"id" => id, "feature" => feature_params}) do
@@ -44,7 +47,8 @@ defmodule Chankins.Web.FeatureController do
         |> put_flash(:info, "Feature updated successfully.")
         |> redirect(to: feature_path(conn, :show, feature))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", feature: feature, changeset: changeset)
+        versions = ChangeManagement.list_versions()
+        render(conn, "edit.html", changeset: changeset, feature: feature, versions: versions)
     end
   end
 
