@@ -10,7 +10,7 @@ defmodule Chankins.Web.ParameterController do
 
   def new(conn, _params) do
     changeset = ChangeManagement.change_parameter(%Chankins.ChangeManagement.Parameter{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", [changeset: changeset] ++ versions_and_features())
   end
 
   def create(conn, %{"parameter" => parameter_params}) do
@@ -20,7 +20,7 @@ defmodule Chankins.Web.ParameterController do
         |> put_flash(:info, "Parameter created successfully.")
         |> redirect(to: parameter_path(conn, :show, parameter))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", [changeset: changeset] ++ versions_and_features())
     end
   end
 
@@ -32,7 +32,7 @@ defmodule Chankins.Web.ParameterController do
   def edit(conn, %{"id" => id}) do
     parameter = ChangeManagement.get_parameter!(id)
     changeset = ChangeManagement.change_parameter(parameter)
-    render(conn, "edit.html", parameter: parameter, changeset: changeset)
+    render(conn, "edit.html", [parameter: parameter, changeset: changeset] ++ versions_and_features())
   end
 
   def update(conn, %{"id" => id, "parameter" => parameter_params}) do
@@ -44,7 +44,7 @@ defmodule Chankins.Web.ParameterController do
         |> put_flash(:info, "Parameter updated successfully.")
         |> redirect(to: parameter_path(conn, :show, parameter))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", parameter: parameter, changeset: changeset)
+        render(conn, "edit.html", [parameter: parameter, changeset: changeset] ++ versions_and_features())
     end
   end
 
@@ -55,5 +55,11 @@ defmodule Chankins.Web.ParameterController do
     conn
     |> put_flash(:info, "Parameter deleted successfully.")
     |> redirect(to: parameter_path(conn, :index))
+  end
+
+  defp versions_and_features do
+    versions = ChangeManagement.list_versions()
+    features = ChangeManagement.list_features()
+    [versions: versions, features: features]
   end
 end

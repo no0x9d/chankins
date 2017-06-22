@@ -17,7 +17,7 @@ defmodule Chankins.ChangeManagement.Parameter do
   @doc false
   def changeset(%Parameter{} = parameter, attrs) do
     parameter
-    |> cast(attrs, [:key, :value, :group])
+    |> cast(attrs, [:key, :value, :group, :version_id, :feature_id])
     |> validate_required([:key, :value, :group])
   end
 end
