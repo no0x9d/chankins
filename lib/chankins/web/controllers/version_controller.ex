@@ -10,7 +10,8 @@ defmodule Chankins.Web.VersionController do
 
   def new(conn, _params) do
     changeset = ChangeManagement.change_version(%Chankins.ChangeManagement.Version{})
-    render(conn, "new.html", changeset: changeset)
+    releases = ChangeManagement.list_releases()
+    render(conn, "new.html", changeset: changeset,  releases: releases)
   end
 
   def create(conn, %{"version" => version_params}) do
@@ -20,7 +21,8 @@ defmodule Chankins.Web.VersionController do
         |> put_flash(:info, "Version created successfully.")
         |> redirect(to: version_path(conn, :show, version))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        releases = ChangeManagement.list_releases()
+        render(conn, "new.html", changeset: changeset,  releases: releases)
     end
   end
 
@@ -32,7 +34,8 @@ defmodule Chankins.Web.VersionController do
   def edit(conn, %{"id" => id}) do
     version = ChangeManagement.get_version!(id)
     changeset = ChangeManagement.change_version(version)
-    render(conn, "edit.html", version: version, changeset: changeset)
+    releases = ChangeManagement.list_releases()
+    render(conn, "edit.html", version: version, changeset: changeset, releases: releases)
   end
 
   def update(conn, %{"id" => id, "version" => version_params}) do
@@ -44,7 +47,8 @@ defmodule Chankins.Web.VersionController do
         |> put_flash(:info, "Version updated successfully.")
         |> redirect(to: version_path(conn, :show, version))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", version: version, changeset: changeset)
+        releases = ChangeManagement.list_releases()
+        render(conn, "edit.html", version: version, changeset: changeset, releases: releases)
     end
   end
 

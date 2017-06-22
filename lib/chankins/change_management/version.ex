@@ -18,7 +18,7 @@ defmodule Chankins.ChangeManagement.Version do
   @doc false
   def changeset(%Version{} = version, attrs) do
     version
-    |> cast(attrs, [:version, :release_date])
+    |> cast(attrs, [:version, :release_date, :release_id])
     |> validate_required([:version, :release_date])
   end
 end
