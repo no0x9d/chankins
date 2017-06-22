@@ -8,6 +8,7 @@ defmodule Chankins.ChangeManagement.Version do
     field :release_date, :utc_datetime
     field :version, :string
     belongs_to :release, Release
+    has_one :project, through: [:release, :project]
     has_many :features, Feature
     has_many :parameters, Parameter
 
