@@ -229,6 +229,8 @@ defmodule Chankins.ChangeManagement do
   """
   def get_version!(id), do: Repo.get!(Version, id) |> Repo.preload([:features, :parameters])
 
+  def get_version_full_preload!(id), do: Repo.get!(Version, id) |> Repo.preload([{:features, :parameters}, :parameters, :project])
+
   @doc """
   Creates a version.
 
