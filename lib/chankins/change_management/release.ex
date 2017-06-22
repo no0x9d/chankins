@@ -5,7 +5,7 @@
 
 
   schema "change_management_releases" do
-    field :version, :string
+    field :name, :string
     belongs_to :project, Chankins.ChangeManagement.Project
     has_many :versions, Chankins.ChangeManagement.Version
 
@@ -15,7 +15,7 @@
   @doc false
   def changeset(%Release{} = release, attrs) do
     release
-    |> cast(attrs, [:version, :project_id])
-    |> validate_required([:version])
+    |> cast(attrs, [:name, :project_id])
+    |> validate_required([:name])
   end
 end

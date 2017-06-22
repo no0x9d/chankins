@@ -3,7 +3,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Version</th>
+      <th>Name</th>
 
       <th></th>
     </tr>
@@ -11,7 +11,7 @@
   <tbody>
 <%= for release <- @releases do %>
     <tr>
-      <td><%= release.version %></td>
+      <td><%= release.name %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: release_path(@conn, :show, release), class: "btn btn-default btn-xs" %></span>

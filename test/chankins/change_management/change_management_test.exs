@@ -66,9 +66,9 @@ defmodule Chankins.ChangeManagementTest do
   describe "releases" do
     alias Chankins.ChangeManagement.Release
 
-    @valid_attrs %{version: "some version"}
-    @update_attrs %{version: "some updated version"}
-    @invalid_attrs %{version: nil}
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
 
     def release_fixture(attrs \\ %{}) do
       {:ok, release} =

@@ -3,9 +3,9 @@ defmodule Chankins.Web.ReleaseControllerTest do
 
   alias Chankins.ChangeManagement
 
-  @create_attrs %{version: "some version"}
-  @update_attrs %{version: "some updated version"}
-  @invalid_attrs %{version: nil}
+  @create_attrs %{name: "some name"}
+  @update_attrs %{name: "some updated name"}
+  @invalid_attrs %{name: nil}
 
   def fixture(:release) do
     {:ok, release} = ChangeManagement.create_release(@create_attrs)

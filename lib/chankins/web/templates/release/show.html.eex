@@ -1,6 +1,6 @@
 <h2>Show Release</h2>
 
-<h3><%= @release.version %></h3>
+<h3><%= @release.name %></h3>
 <h4>Versions:</h4>
 <ul>
   <%= for version <- @release.versions do %>
