@@ -20,4 +20,4 @@
 </ul>
 
 <span><%= link "Edit", to: parameter_path(@conn, :edit, @parameter) %></span>
-<span><%= link "Back", to: parameter_path(@conn, :index) %></span>
+<span><%= link "Parameter", to: parameter_path(@conn, :index) %></span>

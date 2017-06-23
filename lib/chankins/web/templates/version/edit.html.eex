@@ -3,4 +3,4 @@
 <%= render "form.html", changeset: @changeset, releases: @releases,
                         action: version_path(@conn, :update, @version) %>
 
-<span><%= link "Back", to: version_path(@conn, :index) %></span>
+<span><%= link "Back", to: version_path(@conn, :show, @version) %></span>

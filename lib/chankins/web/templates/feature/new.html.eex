@@ -3,4 +3,4 @@
 <%= render "form.html", changeset: @changeset, versions: @versions,
                         action: feature_path(@conn, :create) %>
 
-<span><%= link "Back", to: feature_path(@conn, :index) %></span>
+<span><%= link "Features", to: feature_path(@conn, :index) %></span>

@@ -1,4 +1,4 @@
-<h2>Show Version</h2>
+<h2><%= link @version.release.name, to: release_path(@conn, :show, @version.release) %></h2>
 
 <h3><%= @version.version %></h3>
 
@@ -24,4 +24,4 @@
 </ul>
 
 <span><%= link "Edit", to: version_path(@conn, :edit, @version) %></span>
-<span><%= link "Back", to: version_path(@conn, :index) %></span>
+<span><%= link "Versions", to: version_path(@conn, :index) %></span>

@@ -1,4 +1,4 @@
-<h2>Show Feature</h2>
+<h2><%= link @feature.version.version, to: version_path(@conn, :show, @feature.version) %></h2>
 
 <h4>
   <%= @feature.title %>
