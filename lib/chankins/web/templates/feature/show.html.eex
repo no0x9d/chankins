@@ -8,14 +8,35 @@
   <%= @feature.description %>
 </div>
 
-<ul>
+<h4>Parameters:</h4>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+    <th>Group</th>
+
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
   <%= for parameter <- @feature.parameters do %>
-    <li>
-      <strong> <%= parameter.key %>: </strong>(<%= parameter.group %>)
-      <%= parameter.value %>
-    </li>
+      <tr>
+        <td><%= parameter.key %></td>
+        <td><%= parameter.value %></td>
+        <td><%= parameter.group %></td>
+
+        <td class="text-right">
+          <span><%= link "Show", to: parameter_path(@conn, :show, parameter), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Edit", to: parameter_path(@conn, :edit, parameter), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete", to: parameter_path(@conn, :delete, parameter), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        </td>
+      </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
+
+<span><%= link "new Parameter", to: parameter_path(@conn, :new, feature: @feature.id) %></span>
 
 <span><%= link "Edit", to: feature_path(@conn, :edit, @feature) %></span>
 <span><%= link "Back", to: feature_path(@conn, :index) %></span>

@@ -8,6 +8,14 @@ defmodule Chankins.Web.ParameterController do
     render(conn, "index.html", parameters: parameters)
   end
 
+  def new(conn, %{"feature" => feature_id}) do
+    changeset = ChangeManagement.change_parameter(%Chankins.ChangeManagement.Parameter{feature_id: feature_id})
+    render(conn, "new.html", [changeset: changeset] ++ versions_and_features())
+  end
+  def new(conn, %{"version" => version_id}) do
+    changeset = ChangeManagement.change_parameter(%Chankins.ChangeManagement.Parameter{version_id: version_id})
+    render(conn, "new.html", [changeset: changeset] ++ versions_and_features())
+  end
   def new(conn, _params) do
     changeset = ChangeManagement.change_parameter(%Chankins.ChangeManagement.Parameter{})
     render(conn, "new.html", [changeset: changeset] ++ versions_and_features())
