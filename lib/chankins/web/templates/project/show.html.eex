@@ -4,7 +4,7 @@
 <h4>Releases:</h4>
 <ul>
   <%= for release <- @project.releases do %>
-    <li> <%= link release.version, to: release_path(@conn, :show, release) %> </li>
+    <li> <%= link release.name, to: release_path(@conn, :show, release) %> </li>
   <% end %>
 </ul>
 
