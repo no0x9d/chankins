@@ -26,7 +26,8 @@ defmodule Chankins.Web.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Chankins.Web do
-  #   pipe_through :api
-  # end
+   scope "/api", Chankins.Web, as: :api do
+     pipe_through :api
+     resources "/projects", API.ProjectController
+   end
 end

@@ -229,6 +229,20 @@ defmodule Chankins.ChangeManagement do
   """
   def get_version!(id), do: Repo.get!(Version, id) |> Repo.preload([:features, :parameters, :release])
 
+  @doc """
+  Gets a single version with all relations preloaded.
+
+  Raises `Ecto.NoResultsError` if the Version does not exist.
+
+  ## Examples
+
+      iex> get_version!(123)
+      %Version{}
+
+      iex> get_version!(456)
+      ** (Ecto.NoResultsError)
+
+  """
   def get_version_full_preload!(id), do: Repo.get!(Version, id) |> Repo.preload([{:features, :parameters}, :parameters, :project])
 
   @doc """
