@@ -11,6 +11,10 @@ defmodule Chankins.Web.API.ProjectView do
   end
 
   def render("project.json", %{project: project}) do
-    %{id: project.id, name: project.name}
+    %{id: project.id, name: project.name, releases: render_many(project.releases, ProjectView, "release", as: :release)}
+  end
+
+  def render("release", %{release: release}) do
+    %{id: release.id, name: release.name}
   end
 end

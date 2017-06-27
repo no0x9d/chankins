@@ -18,7 +18,7 @@ defmodule Chankins.ChangeManagement do
 
   """
   def list_projects do
-    Repo.all(Project)
+    Repo.all(Project) |> Repo.preload([:releases])
   end
 
   @doc """
