@@ -29,5 +29,6 @@ defmodule Chankins.Web.Router do
    scope "/api", Chankins.Web, as: :api do
      pipe_through :api
      resources "/projects", API.ProjectController
+    resources "/releases", API.ReleaseController
    end
 end
