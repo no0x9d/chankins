@@ -30,5 +30,6 @@ defmodule Chankins.Web.Router do
      pipe_through :api
      resources "/projects", API.ProjectController
     resources "/releases", API.ReleaseController
+    resources "/versions", API.VersionController
    end
 end
