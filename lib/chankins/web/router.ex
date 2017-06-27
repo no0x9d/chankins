@@ -32,5 +32,6 @@ defmodule Chankins.Web.Router do
     resources "/releases", API.ReleaseController
     resources "/versions", API.VersionController
     resources "/features", API.FeatureController
+    resources "/parameters", API.ParameterController
    end
 end
