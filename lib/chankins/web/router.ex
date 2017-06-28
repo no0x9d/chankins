@@ -17,6 +17,7 @@ defmodule Chankins.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", ProjectController, :index
+    get "/changenotes", ChangeNotesController, :show
     resources "/projects", ProjectController
     resources "/releases", ReleaseController
     resources "/versions", VersionController

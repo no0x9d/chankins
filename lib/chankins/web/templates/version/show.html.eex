@@ -45,3 +45,4 @@
 
 <span><%= link "Edit", to: version_path(@conn, :edit, @version) %></span>
 <span><%= link "Versions", to: version_path(@conn, :index) %></span>
+<span><%= link "Change Notes", to: change_notes_path(@conn, :show, version: @version.id), class: "btn btn-success" %></span>
