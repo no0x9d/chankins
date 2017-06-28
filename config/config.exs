@@ -17,6 +17,9 @@ config :chankins, Chankins.Web.Endpoint,
   pubsub: [name: Chankins.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :chankins, Chankins.Generator,
+  engines: %{".md" => Chankins.Generator.MarkdownEngine, ".eex" => Chankins.Generator.EExEngine}
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
