@@ -13,6 +13,7 @@ defmodule Chankins.Web.API.FeatureController do
 
   def create(conn, %{"feature" => feature_params}) do
     with {:ok, %Feature{} = feature} <- ChangeManagement.create_feature(feature_params) do
+      feature = ChangeManagement.get_feature!(feature.id)
       conn
       |> put_status(:created)
       |> put_resp_header("location", api_feature_path(conn, :show, feature))
