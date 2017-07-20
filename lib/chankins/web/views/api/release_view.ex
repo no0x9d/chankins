@@ -11,6 +11,10 @@ defmodule Chankins.Web.API.ReleaseView do
   end
 
   def render("release.json", %{release: release}) do
-    %{id: release.id, versions: Enum.map(release.versions, &(&1).id)}
+    %{id: release.id, versions: render_many(release.versions, ReleaseView, "version", as: :version)}
+  end
+
+  def render("version", %{version: version}) do
+    %{id: version.id, version: version.version}
   end
 end
