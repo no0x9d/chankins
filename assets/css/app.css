@@ -4,7 +4,7 @@
     height: 71px;
     display: inline-block;
     margin-bottom: 1em;
-    background-image: url("/images/chankins_logo.png");
+    background-image: url("../images/chankins_logo.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
