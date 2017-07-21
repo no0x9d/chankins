@@ -13,6 +13,7 @@ defmodule Chankins.Web.API.VersionController do
 
   def create(conn, %{"version" => version_params}) do
     with {:ok, %Version{} = version} <- ChangeManagement.create_version(version_params) do
+    version = ChangeManagement.get_version!(version.id)
       conn
       |> put_status(:created)
       |> put_resp_header("location", api_version_path(conn, :show, version))

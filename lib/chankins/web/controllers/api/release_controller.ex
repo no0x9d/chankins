@@ -13,6 +13,7 @@ defmodule Chankins.Web.API.ReleaseController do
 
   def create(conn, %{"release" => release_params}) do
     with {:ok, %Release{} = release} <- ChangeManagement.create_release(release_params) do
+      release = ChangeManagement.get_release!(release.id)
       conn
       |> put_status(:created)
       |> put_resp_header("location", api_release_path(conn, :show, release))
