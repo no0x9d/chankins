@@ -39,7 +39,7 @@
 <h4>Features:</h4>
 <ul>
   <%= for feature <- @version.features do %>
-    <li> <%= link feature.title, to: feature_path(@conn, :show, feature) %> </li>
+    <li> <%= link feature.title, to: feature_path(@conn, :show, feature) %> - <%= feature.description %></li>
   <% end %>
 </ul>
 
