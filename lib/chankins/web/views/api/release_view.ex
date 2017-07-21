@@ -11,7 +11,7 @@ defmodule Chankins.Web.API.ReleaseView do
   end
 
   def render("release.json", %{release: release}) do
-    %{id: release.id, versions: render_many(release.versions, ReleaseView, "version", as: :version)}
+    %{id: release.id, name: release.name, versions: render_many(release.versions, ReleaseView, "version", as: :version)}
   end
 
   def render("version", %{version: version}) do
