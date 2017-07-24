@@ -8,6 +8,11 @@ defmodule Chankins.Web.FeatureController do
     render(conn, "index.html", features: features)
   end
 
+  def new(conn, %{"version" => version_id}) do
+    changeset = ChangeManagement.change_feature(%Chankins.ChangeManagement.Feature{version_id: version_id})
+    versions = ChangeManagement.list_versions()
+    render(conn, "new.html", changeset: changeset, versions: versions)
+  end
   def new(conn, _params) do
     changeset = ChangeManagement.change_feature(%Chankins.ChangeManagement.Feature{})
     versions = ChangeManagement.list_versions()
